@@ -10,4 +10,8 @@ export const map = {
     Font: MaterialCommunityIcons,
     name: 'account-outline',
   },
+  gift: {
+    Font: MaterialCommunityIcons,
+    name: 'gift',
+  },
 };

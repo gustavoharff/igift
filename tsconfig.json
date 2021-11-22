@@ -14,8 +14,10 @@
     "skipLibCheck": false,
     "resolveJsonModule": true,
     "paths": {
+      "assets": ["./src/assets"],
       "screens": ["./src/components/screens"],
       "ui": ["./src/components/ui"],
+      "navigation": ["./src/navigation"],
     }
   },
   "exclude": [

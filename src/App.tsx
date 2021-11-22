@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { Home } from 'screens';
+import { Routes } from 'navigation';
 
 export function App() {
-  return <Home />;
+  return <Routes />;
 }
