@@ -14,4 +14,24 @@ export const map = {
     Font: MaterialCommunityIcons,
     name: 'gift',
   },
+  giftOutline: {
+    Font: MaterialCommunityIcons,
+    name: 'gift-outline',
+  },
+  file: {
+    Font: MaterialCommunityIcons,
+    name: 'text-box-multiple',
+  },
+  fileOutline: {
+    Font: MaterialCommunityIcons,
+    name: 'text-box-multiple-outline',
+  },
+  check: {
+    Font: MaterialCommunityIcons,
+    name: 'check',
+  },
+  close: {
+    Font: MaterialCommunityIcons,
+    name: 'close',
+  },
 };
