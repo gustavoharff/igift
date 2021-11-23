@@ -1,50 +1,27 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { HomeScreen, Requests } from 'screens';
-import { TabBarIcon } from 'ui';
+import { TabRoutes } from './tab';
+import { EstablishmentStack } from './establishment-stack';
 
-import { DEFAULT, BOTTOM_TAB_DEFAULT } from './helper';
-
-const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 export function Routes() {
   return (
     <NavigationContainer>
-      <Tab.Navigator screenOptions={{ tabBarStyle: { height: 56 } }}>
-        <Tab.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{
-            ...DEFAULT,
-            ...BOTTOM_TAB_DEFAULT,
-            tabBarIcon: props => (
-              <TabBarIcon
-                name={props.focused ? 'gift' : 'giftOutline'}
-                {...props}
-              />
-            ),
-            tabBarLabel: 'Início',
-          }}
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Tab"
+          component={TabRoutes}
+          options={{ headerShown: false }}
         />
-
-        <Tab.Screen
-          name="Requests"
-          component={Requests}
-          options={{
-            ...DEFAULT,
-            ...BOTTOM_TAB_DEFAULT,
-            tabBarIcon: props => (
-              <TabBarIcon
-                name={props.focused ? 'file' : 'fileOutline'}
-                {...props}
-              />
-            ),
-            tabBarLabel: 'Pedidos',
-          }}
+        <Stack.Screen
+          name="EstablishmentStack"
+          component={EstablishmentStack}
+          options={{ headerShown: false }}
         />
-      </Tab.Navigator>
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }

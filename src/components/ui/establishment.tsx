@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import { establishmentDefault } from 'assets';
 
@@ -8,13 +9,26 @@ interface EstablishmentProps {
 }
 
 export function Establishment({ name }: EstablishmentProps) {
+  const navigation = useNavigation();
+
+  function onPress() {
+    navigation.navigate('EstablishmentStack', {
+      screen: 'Establishment',
+      params: {
+        name,
+      },
+    });
+  }
+
   return (
-    <View style={styles.container}>
-      <Image source={establishmentDefault} style={styles.image} />
-      <Text style={styles.text} numberOfLines={2}>
-        {name}
-      </Text>
-    </View>
+    <TouchableOpacity onPress={onPress} activeOpacity={0.7}>
+      <View style={styles.container}>
+        <Image source={establishmentDefault} style={styles.image} />
+        <Text style={styles.text} numberOfLines={2}>
+          {name}
+        </Text>
+      </View>
+    </TouchableOpacity>
   );
 }
 
