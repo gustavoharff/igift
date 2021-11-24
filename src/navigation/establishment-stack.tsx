@@ -1,14 +1,25 @@
 import * as React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { EstablishmentScreen } from 'screens';
+import { EstablishmentScreen, RequestFormScreen } from 'screens';
+import { HeaderBackButton } from '@react-navigation/elements';
 
 const Stack = createNativeStackNavigator();
 
 export function EstablishmentStack() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={({ navigation }) => ({
+        headerLeft: props => (
+          <HeaderBackButton
+            {...props}
+            onPress={navigation.goBack}
+            tintColor="#FFBE51"
+          />
+        ),
+      })}>
       <Stack.Screen name="Establishment" component={EstablishmentScreen} />
+      <Stack.Screen name="RequestFormScreen" component={RequestFormScreen} />
     </Stack.Navigator>
   );
 }

@@ -1,15 +1,43 @@
+import { useNavigation } from '@react-navigation/native';
 import * as React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-export function ProductItem({ name, price, description }: Product) {
+type Props = Product & {
+  button?: boolean;
+};
+
+export function ProductItem({
+  name,
+  price,
+  description,
+  button = true,
+}: Props) {
+  const navigation = useNavigation();
+
   return (
-    <View style={styles.container}>
-      <View>
-        <Text style={styles.name}>{name}</Text>
-        <Text style={styles.description}>{description}</Text>
+    <TouchableOpacity
+      disabled={!button}
+      activeOpacity={0.7}
+      onPress={() => {
+        navigation.navigate('EstablishmentStack', {
+          screen: 'RequestFormScreen',
+          params: {
+            product: {
+              name,
+              description,
+              price,
+            },
+          },
+        });
+      }}>
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.name}>{name}</Text>
+          <Text style={styles.description}>{description}</Text>
+        </View>
+        <Text style={styles.price}>R${price}</Text>
       </View>
-      <Text style={styles.price}>R${price}</Text>
-    </View>
+    </TouchableOpacity>
   );
 }
 

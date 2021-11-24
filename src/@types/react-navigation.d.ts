@@ -6,6 +6,9 @@ declare global {
       Establishment: {
         name: string;
       };
+      RequestFormScreen: {
+        product: Product;
+      };
     }
 
     interface RootParamList {
