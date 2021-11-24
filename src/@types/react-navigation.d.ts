@@ -9,6 +9,7 @@ declare global {
       RequestFormScreen: {
         product: Product;
       };
+      CategoryEstablishemnt: undefined;
     }
 
     interface RootParamList {

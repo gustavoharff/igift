@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ProductItem } from 'features';
 import * as React from 'react';
@@ -16,8 +17,14 @@ type Props = NativeStackScreenProps<
   'RequestFormScreen'
 >;
 
-export function RequestFormScreen({ route, navigation }: Props) {
+export function RequestFormScreen({ route }: Props) {
   const { product } = route.params;
+
+  const navigation = useNavigation();
+
+  const [name, setName] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  // const paymentType = 'money';
 
   React.useEffect(() => {
     navigation.setOptions({
@@ -25,8 +32,9 @@ export function RequestFormScreen({ route, navigation }: Props) {
     });
   }, [navigation, product.name]);
 
-  if (!product) {
-    return null;
+  function onSubmit() {
+    // TODO: POST TO API
+    navigation.navigate('Requests');
   }
 
   return (
@@ -44,11 +52,21 @@ export function RequestFormScreen({ route, navigation }: Props) {
 
           <View style={styles.separator} />
 
-          <TextInput placeholder="Seu nome" style={styles.input} />
+          <TextInput
+            placeholder="Seu nome"
+            value={name}
+            onChangeText={setName}
+            style={styles.input}
+          />
 
           <View style={styles.separator} />
 
-          <TextInput placeholder="Seu e-mail" style={styles.input} />
+          <TextInput
+            placeholder="Seu e-mail"
+            value={email}
+            onChangeText={setEmail}
+            style={styles.input}
+          />
 
           <View style={styles.separator} />
 
@@ -61,7 +79,11 @@ export function RequestFormScreen({ route, navigation }: Props) {
 
           <View style={styles.separator} />
 
-          <Button title={'Confirmar pagamento'} />
+          <Button
+            title={'Confirmar pagamento'}
+            color="#2AA31A"
+            onPress={onSubmit}
+          />
         </ScrollView>
       </View>
     </View>

@@ -1,47 +1,27 @@
-import { useNavigation } from '@react-navigation/native';
+import { EstablishmentVertical } from 'features';
 import * as React from 'react';
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import { Establishment } from 'ui';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 
 interface EstablishmentListProps {
   title: string;
   establishments: string[];
 }
 
-export function EstablishmentList({
+export function EstablishmentVerticalList({
   title,
   establishments,
 }: EstablishmentListProps) {
-  const navigation = useNavigation();
-
   return (
     <View>
       <View style={styles.header}>
         <Text style={styles.title}>{title}</Text>
-
-        <TouchableOpacity
-          activeOpacity={0.7}
-          onPress={() => {
-            navigation.navigate('EstablishmentStack', {
-              screen: 'CategoryEstablishemnt',
-            });
-          }}>
-          <Text style={styles.more}>Ver mais</Text>
-        </TouchableOpacity>
       </View>
 
       <FlatList
-        horizontal
         ItemSeparatorComponent={() => <View style={styles.separator} />}
         data={establishments}
         renderItem={({ item: establishment }) => (
-          <Establishment name={establishment} />
+          <EstablishmentVertical name={establishment} />
         )}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.listContainer}
@@ -67,7 +47,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   separator: {
-    marginLeft: 16,
+    marginBottom: 16,
   },
   more: {
     fontWeight: 'bold',
