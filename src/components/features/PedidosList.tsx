@@ -1,21 +1,22 @@
 import * as React from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 
-import type { Request as IRequest } from 'ui';
-import { Request } from 'ui';
+import { PedidoComponent } from 'ui';
+import { Pedido } from '../../@types';
 
-interface RequestListProps {
-  requests: IRequest[];
+interface PedidosListProps {
+  pedidos: Pedido[];
 }
 
-export function RequestList({ requests }: RequestListProps) {
+export function PedidosList({ pedidos }: PedidosListProps) {
   return (
     <React.Fragment>
       <Text style={styles.title}>Histórico de pedidos</Text>
       <FlatList
-        data={requests}
+        data={pedidos}
+        ListEmptyComponent={<Text>Nenhum pedido realizado</Text>}
         ItemSeparatorComponent={() => <View style={styles.separator} />}
-        renderItem={({ item: request }) => <Request request={request} />}
+        renderItem={({ item: pedido }) => <PedidoComponent pedido={pedido} />}
         contentContainerStyle={styles.listContainer}
       />
     </React.Fragment>

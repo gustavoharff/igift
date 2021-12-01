@@ -1,17 +1,21 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
-import { HomeScreen, Requests } from 'screens';
-import { TabBarIcon } from 'ui';
+import { TouchableOpacity } from 'react-native';
+import { InicioScreen, PedidosScreen } from 'screens';
+import { Icon, TabBarIcon } from 'ui';
+import { AuthContext } from '../context/AuthContext';
 import { BOTTOM_TAB_DEFAULT, DEFAULT } from './helper';
 
 const Tab = createBottomTabNavigator();
 
 export function TabRoutes() {
+  const { logout } = React.useContext(AuthContext);
+
   return (
     <Tab.Navigator screenOptions={{ tabBarStyle: { height: 56 } }}>
       <Tab.Screen
-        name="Home"
-        component={HomeScreen}
+        name="Inicio"
+        component={InicioScreen}
         options={{
           ...DEFAULT,
           ...BOTTOM_TAB_DEFAULT,
@@ -26,11 +30,22 @@ export function TabRoutes() {
       />
 
       <Tab.Screen
-        name="Requests"
-        component={Requests}
+        name="Pedidos"
+        component={PedidosScreen}
         options={{
           ...DEFAULT,
           ...BOTTOM_TAB_DEFAULT,
+          headerRight: () => (
+            <TouchableOpacity onPress={logout}>
+              <Icon
+              name="logout"
+              color="red"
+              style={{ marginRight: 16 }}
+              size={24}
+            />
+            </TouchableOpacity>
+            
+          ),
           tabBarIcon: props => (
             <TabBarIcon
               name={props.focused ? 'file' : 'fileOutline'}

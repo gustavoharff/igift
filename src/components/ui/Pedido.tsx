@@ -5,39 +5,33 @@ import 'moment/locale/pt-br';
 
 import { establishmentDefault } from 'assets';
 import { Icon } from 'ui';
-
-export type Request = {
-  number: number;
-  date: string;
-  establishment: string;
-  done: boolean;
-};
+import type { Pedido } from '../../@types';
 
 interface RequestProps {
-  request: Request;
+  pedido: Pedido;
 }
 
-export function Request({
-  request: { date, establishment, done, number },
+export function PedidoComponent({
+pedido
 }: RequestProps) {
   return (
     <View>
-      <Text style={styles.date}>{moment(date).format('ll')}</Text>
+      <Text style={styles.date}>{moment().format('ll')}</Text>
       <View style={styles.wrapper}>
         <View style={styles.header}>
           <Image source={establishmentDefault} style={styles.logo} />
-          <Text style={styles.establishment}>{establishment}</Text>
+          <Text style={styles.establishment}>{pedido.loja.nome}</Text>
         </View>
 
-        {done ? (
+        {pedido.finalizado ? (
           <View style={styles.status}>
             <Icon name="check" style={styles.icon} size={24} color="#49BE20" />
-            <Text>Pedido número {number} concluído</Text>
+            <Text>Pedido número 21 concluído</Text>
           </View>
         ) : (
           <View style={styles.status}>
             <Icon name="close" style={styles.icon} size={24} color="#CC2525" />
-            <Text>Pedido cancelado</Text>
+            <Text>Pedido em andamento</Text>
           </View>
         )}
       </View>

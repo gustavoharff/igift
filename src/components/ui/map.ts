@@ -10,6 +10,10 @@ export const map = {
     Font: MaterialCommunityIcons,
     name: 'account-outline',
   },
+  logout: {
+    Font: MaterialCommunityIcons,
+    name: "exit-to-app",
+  },
   gift: {
     Font: MaterialCommunityIcons,
     name: 'gift',

@@ -3,19 +3,21 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { establishmentDefault } from 'assets';
+import { Loja } from '../../@types';
 
-interface EstablishmentProps {
-  name: string;
+interface LojaVerticalProps {
+  loja: Loja;
 }
 
-export function Establishment({ name }: EstablishmentProps) {
+export function LojaVerticalItem({ loja }: LojaVerticalProps) {
   const navigation = useNavigation();
 
   function onPress() {
-    navigation.navigate('EstablishmentStack', {
-      screen: 'Establishment',
+    navigation.navigate('LojaStack', {
+      screen: 'LojaScreen',
       params: {
-        name,
+        name: loja.nome,
+        lojaId: loja.id,
       },
     });
   }
@@ -25,7 +27,7 @@ export function Establishment({ name }: EstablishmentProps) {
       <View style={styles.container}>
         <Image source={establishmentDefault} style={styles.image} />
         <Text style={styles.text} numberOfLines={2}>
-          {name}
+          {loja.nome}
         </Text>
       </View>
     </TouchableOpacity>
@@ -34,7 +36,11 @@ export function Establishment({ name }: EstablishmentProps) {
 
 const styles = StyleSheet.create({
   container: {
-    width: 75,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'rgba(196, 196, 196, 0.4)',
+    padding: 16,
+    borderRadius: 8,
   },
   image: {
     width: 75,
@@ -44,6 +50,7 @@ const styles = StyleSheet.create({
     borderColor: '#C4C4C4',
   },
   text: {
+    marginLeft: 16,
     textAlign: 'center',
     marginTop: 8,
     color: '#525050',

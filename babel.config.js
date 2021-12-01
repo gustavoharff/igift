@@ -11,6 +11,7 @@ module.exports = {
           screens: './src/components/screens',
           ui: './src/components/ui',
           navigation: './src/navigation',
+          service: './src/service',
         },
       },
     ],

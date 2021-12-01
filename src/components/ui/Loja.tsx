@@ -4,18 +4,20 @@ import { useNavigation } from '@react-navigation/native';
 
 import { establishmentDefault } from 'assets';
 
-interface EstablishmentProps {
+interface LojaProps {
+  lojaId: number;
   name: string;
 }
 
-export function EstablishmentVertical({ name }: EstablishmentProps) {
+export function LojaComponent({ name, lojaId }: LojaProps) {
   const navigation = useNavigation();
 
   function onPress() {
-    navigation.navigate('EstablishmentStack', {
-      screen: 'Establishment',
+    navigation.navigate('LojaStack', {
+      screen: 'LojaScreen',
       params: {
         name,
+        lojaId,
       },
     });
   }
@@ -34,11 +36,7 @@ export function EstablishmentVertical({ name }: EstablishmentProps) {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: 'rgba(196, 196, 196, 0.4)',
-    padding: 16,
-    borderRadius: 8,
+    width: 75,
   },
   image: {
     width: 75,
@@ -48,7 +46,6 @@ const styles = StyleSheet.create({
     borderColor: '#C4C4C4',
   },
   text: {
-    marginLeft: 16,
     textAlign: 'center',
     marginTop: 8,
     color: '#525050',

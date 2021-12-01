@@ -1,23 +1,26 @@
-import { ProductItem } from 'features';
+import { ItemComponent } from 'features';
 import * as React from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
+import type { Item } from '../../@types';
 
-interface ProductListProps {
-  products: Product[];
+interface ItensListProps {
+  itens: Item[];
 }
 
-export function ProductList({ products }: ProductListProps) {
+export function ItensList({ itens }: ItensListProps) {
   return (
     <React.Fragment>
       <Text style={styles.title}>Produtos</Text>
       <FlatList
-        data={products}
+        data={itens}
+        ListEmptyComponent={<Text>Nenhum item disponivel</Text>}
         ItemSeparatorComponent={() => <View style={styles.separator} />}
         renderItem={({ item }) => (
-          <ProductItem
-            name={item.name}
-            price={item.price}
-            description={item.description}
+          <ItemComponent
+            nome={item.nome}
+          loja={item.loja}
+            categoria={item.categoria}
+            valorUnitario={item.valorUnitario}
           />
         )}
         contentContainerStyle={styles.list}

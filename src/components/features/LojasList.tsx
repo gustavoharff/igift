@@ -7,29 +7,34 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { Establishment } from 'ui';
+import { LojaComponent } from 'ui';
+import { Loja } from '../../@types';
+import { Categoria } from '../../enum/Categoria';
 
-interface EstablishmentListProps {
-  title: string;
-  establishments: string[];
+interface LojasListProps {
+  lojas: Loja[];
+  categoria: Categoria;
 }
 
-export function EstablishmentList({
-  title,
-  establishments,
-}: EstablishmentListProps) {
+export function LojasList({
+  categoria,
+  lojas,
+}: LojasListProps) {
   const navigation = useNavigation();
 
   return (
     <View>
       <View style={styles.header}>
-        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.title}>{categoria}</Text>
 
         <TouchableOpacity
           activeOpacity={0.7}
           onPress={() => {
-            navigation.navigate('EstablishmentStack', {
-              screen: 'CategoryEstablishemnt',
+            navigation.navigate('LojaStack', {
+              screen: 'CategoriaScreen',
+              params: {
+                categoria: categoria,
+              },
             });
           }}>
           <Text style={styles.more}>Ver mais</Text>
@@ -39,10 +44,8 @@ export function EstablishmentList({
       <FlatList
         horizontal
         ItemSeparatorComponent={() => <View style={styles.separator} />}
-        data={establishments}
-        renderItem={({ item: establishment }) => (
-          <Establishment name={establishment} />
-        )}
+        data={lojas}
+        renderItem={({ item: loja }) => <LojaComponent name={loja.nome} lojaId={loja.id} />}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.listContainer}
       />

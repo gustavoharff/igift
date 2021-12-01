@@ -1,21 +1,28 @@
 import type { NavigatorScreenParams } from '@react-navigation/native'; // eslint-disable-line
+import type { Item } from '.';  // eslint-disable-line
+import { Categoria } from '../enum/Categoria'; // eslint-disable-line
 
 declare global {
   namespace ReactNavigation {
-    interface EstablishmentParamList {
-      Establishment: {
+    interface LojaParamList {
+      LojaScreen: {
+        lojaId: number;
         name: string;
       };
-      RequestFormScreen: {
-        product: Product;
+      PedidoScreen: {
+        item: Item;
       };
-      CategoryEstablishemnt: undefined;
+      CategoriaScreen: {
+        categoria: Categoria;
+      };
     }
-
+    
     interface RootParamList {
-      Home: undefined;
-      Requests: undefined;
-      EstablishmentStack: NavigatorScreenParams<EstablishmentParamList>;
+      Inicio: undefined;
+      Pedidos: undefined;
+      LojaStack: NavigatorScreenParams<LojaParamList>;
+      SignUpScreen: undefined;
+      LoginScreen: undefined;
     }
   }
 }

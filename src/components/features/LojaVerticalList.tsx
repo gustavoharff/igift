@@ -1,15 +1,16 @@
-import { EstablishmentVertical } from 'features';
+import { LojaVerticalItem } from 'features';
 import * as React from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { Loja } from '../../@types';
 
 interface EstablishmentListProps {
   title: string;
-  establishments: string[];
+  lojas: Loja[];
 }
 
-export function EstablishmentVerticalList({
+export function LojaVerticalList({
   title,
-  establishments,
+  lojas,
 }: EstablishmentListProps) {
   return (
     <View>
@@ -19,9 +20,9 @@ export function EstablishmentVerticalList({
 
       <FlatList
         ItemSeparatorComponent={() => <View style={styles.separator} />}
-        data={establishments}
-        renderItem={({ item: establishment }) => (
-          <EstablishmentVertical name={establishment} />
+        data={lojas}
+        renderItem={({ item: loja }) => (
+          <LojaVerticalItem loja={loja} />
         )}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.listContainer}

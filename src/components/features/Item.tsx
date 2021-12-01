@@ -2,14 +2,17 @@ import { useNavigation } from '@react-navigation/native';
 import * as React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-type Props = Product & {
+import type { Item } from '../../@types';
+
+type Props = Item & {
   button?: boolean;
 };
 
-export function ProductItem({
-  name,
-  price,
-  description,
+export function ItemComponent({
+  nome,
+  categoria,
+  valorUnitario,
+  loja,
   button = true,
 }: Props) {
   const navigation = useNavigation();
@@ -19,23 +22,24 @@ export function ProductItem({
       disabled={!button}
       activeOpacity={0.7}
       onPress={() => {
-        navigation.navigate('EstablishmentStack', {
-          screen: 'RequestFormScreen',
+        navigation.navigate('LojaStack', {
+          screen: 'PedidoScreen',
           params: {
-            product: {
-              name,
-              description,
-              price,
+            item: {
+              nome,
+              categoria,
+              valorUnitario,
+              loja,
             },
           },
         });
       }}>
       <View style={styles.container}>
         <View>
-          <Text style={styles.name}>{name}</Text>
-          <Text style={styles.description}>{description}</Text>
+          <Text style={styles.name}>{nome}</Text>
+          <Text style={styles.description}>{categoria}</Text>
         </View>
-        <Text style={styles.price}>R${price}</Text>
+        <Text style={styles.price}>R${valorUnitario}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -58,7 +62,6 @@ const styles = StyleSheet.create({
   },
   description: {
     color: '#5F5E5E',
-    marginBottom: 8,
   },
   price: {
     fontSize: 18,

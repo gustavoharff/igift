@@ -3,32 +3,24 @@ import { HeaderBackButton } from '@react-navigation/elements';
 import * as React from 'react';
 import { View } from 'react-native';
 
-import { ProductList } from 'features';
+import { ItensList } from 'features';
+import { Item } from '../../@types';
+import { Categoria } from '../../enum/Categoria';
+import { itens } from '../../service/api/itens';
 
 type Props = NativeStackScreenProps<
   // @ts-expect-error
-  ReactNavigation.EstablishmentParamList,
-  'Establishment'
+  ReactNavigation.LojaParamList,
+  'LojaScreen'
 >;
 
-export function EstablishmentScreen({ route, navigation }: Props) {
-  const { name } = route.params;
+export function LojaScreen({ route, navigation }: Props) {
+  const { name, lojaId } = route.params;
 
-  const [products, setProducts] = React.useState<Product[]>([]);
+  const [lojaItens, setLojaItens] = React.useState<Item[]>([]);
 
   React.useEffect(() => {
-    setProducts([
-      {
-        name: 'Titulo do produto',
-        description: 'Descrição breve do produto',
-        price: 12,
-      },
-      {
-        name: 'Outro producto',
-        description: 'Descrição de um outro produto.',
-        price: 10,
-      },
-    ]);
+    itens(lojaId).then(response => setLojaItens(response.data));
   }, []);
 
   React.useEffect(() => {
@@ -46,7 +38,7 @@ export function EstablishmentScreen({ route, navigation }: Props) {
 
   return (
     <View>
-      <ProductList products={products} />
+      <ItensList itens={lojaItens} />
     </View>
   );
 }

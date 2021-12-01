@@ -3,25 +3,35 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { TabRoutes } from './tab';
-import { EstablishmentStack } from './establishment-stack';
+import { LojaStack } from './LojaStack';
+import { LoginStack } from './LoginStack';
+import { AuthContext } from '../context/AuthContext';
 
 const Stack = createNativeStackNavigator();
 
+function AppStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Tab"
+        component={TabRoutes}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="LojaStack"
+        component={LojaStack}
+        options={{ headerShown: false }}
+      />
+    </Stack.Navigator>
+  );
+}
+
 export function Routes() {
+  const { user } = React.useContext(AuthContext);
+
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Tab"
-          component={TabRoutes}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="EstablishmentStack"
-          component={EstablishmentStack}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
+      {user ? <AppStack /> : <LoginStack />}
     </NavigationContainer>
   );
 }

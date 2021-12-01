@@ -2,6 +2,12 @@ import * as React from 'react';
 
 import { Routes } from 'navigation';
 
+import { AuthProvider } from './context/AuthContext';
+
 export function App() {
-  return <Routes />;
+  return (
+    <AuthProvider>
+      <Routes />
+    </AuthProvider>
+  );
 }
