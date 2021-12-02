@@ -56,13 +56,15 @@ export function PedidoScreen({ route }: Props) {
 
   React.useEffect(() => {
     listarEntregadores().then(response => setEntregadores(response.data));
-  }, [])
+  }, []);
 
   React.useEffect(() => {
     navigation.setOptions({
       headerTitle: item.nome,
     });
   }, [navigation, item.nome]);
+
+  console.log(item)
 
   async function onSubmit() {
     if (!user) return;
@@ -81,7 +83,7 @@ export function PedidoScreen({ route }: Props) {
         mensagem,
         remetente: user.nome,
       },
-      listaItens: [item],
+      listaItensId: [item.id],
       valorFrete: 4,
       valorItens: item.valorUnitario,
       valorTotal: total,
@@ -105,7 +107,7 @@ export function PedidoScreen({ route }: Props) {
       <EntregadoresModal
         entregadores={entregadores}
         isVisible={entregadoreModalVisible}
-        onEntregadorPress={(entregador) => setSelectedEntregador(entregador)}
+        onEntregadorPress={entregador => setSelectedEntregador(entregador)}
         onRequestClose={() => setEntregadoreModalVisible(false)}
       />
       <Text style={styles.title}>Realizar pedido</Text>
@@ -113,6 +115,7 @@ export function PedidoScreen({ route }: Props) {
       <View style={styles.form}>
         <ScrollView style={{ maxHeight }}>
           <ItemComponent
+            id={item.id}
             nome={item.nome}
             categoria={item.categoria}
             loja={item.loja}

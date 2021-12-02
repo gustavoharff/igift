@@ -13,6 +13,7 @@ export function ItemComponent({
   categoria,
   valorUnitario,
   loja,
+  id,
   button = true,
 }: Props) {
   const navigation = useNavigation();
@@ -26,6 +27,7 @@ export function ItemComponent({
           screen: 'PedidoScreen',
           params: {
             item: {
+              id,
               nome,
               categoria,
               valorUnitario,

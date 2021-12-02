@@ -31,6 +31,7 @@ declare type Endereco = {
 };
 
 declare type Item = {
+  id: number;
   nome: string;
   valorUnitario: number;
   categoria: Categoria;

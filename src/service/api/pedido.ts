@@ -5,7 +5,7 @@ interface RealizarPedidoProps {
   idUsuario: number;
   idLoja: number;
   endereco: Endereco;
-  listaItens: Item[];
+  listaItensId: number[];
   valorTotal: number;
   valorItens: number;
   valorFrete: number;
@@ -16,6 +16,6 @@ interface RealizarPedidoProps {
 }
 
 export async function realizarPedido(data: RealizarPedidoProps) {
-  console.log(data);
+  console.log("Data", data);
   await api.post('/pedido/salvar', data)
 }

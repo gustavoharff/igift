@@ -20,7 +20,7 @@ pedido
       <View style={styles.wrapper}>
         <View style={styles.header}>
           <Image source={establishmentDefault} style={styles.logo} />
-          <Text style={styles.establishment}>{pedido.loja.nome}</Text>
+          <Text style={styles.establishment}>{pedido.lojaDto.nome}</Text>
         </View>
 
         {pedido.finalizado ? (
@@ -30,7 +30,7 @@ pedido
           </View>
         ) : (
           <View style={styles.status}>
-            <Icon name="close" style={styles.icon} size={24} color="#CC2525" />
+            <Icon name="schedule" style={styles.icon} size={24} color="#D5D543" />
             <Text>Pedido em andamento</Text>
           </View>
         )}

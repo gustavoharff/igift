@@ -17,6 +17,7 @@ export function ItensList({ itens }: ItensListProps) {
         ItemSeparatorComponent={() => <View style={styles.separator} />}
         renderItem={({ item }) => (
           <ItemComponent
+          id={item.id}
             nome={item.nome}
           loja={item.loja}
             categoria={item.categoria}

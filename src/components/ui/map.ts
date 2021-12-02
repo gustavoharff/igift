@@ -1,5 +1,5 @@
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-// import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 export const map = {
   profile: {
@@ -9,6 +9,10 @@ export const map = {
   profileOutline: {
     Font: MaterialCommunityIcons,
     name: 'account-outline',
+  },
+  schedule: {
+    Font: MaterialIcons,
+    name: "schedule"
   },
   logout: {
     Font: MaterialCommunityIcons,
@@ -38,4 +42,12 @@ export const map = {
     Font: MaterialCommunityIcons,
     name: 'close',
   },
+  accountCogOutline: {
+    Font: MaterialCommunityIcons,
+    name: "account-cog-outline"
+  },
+  accountCog: {
+    Font: MaterialCommunityIcons,
+    name: "account-cog"
+  }
 };

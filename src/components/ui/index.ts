@@ -1,3 +1,4 @@
+export * from './AdminItem';
 export * from './Loja';
 export * from './icon';
 export * from './logo';

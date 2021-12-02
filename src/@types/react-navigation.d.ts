@@ -15,6 +15,9 @@ declare global {
       CategoriaScreen: {
         categoria: Categoria;
       };
+      CreateLojaScreen: undefined;
+      CreateItemScreen: undefined;
+      CreateEntregadorScreen: undefined;
     }
     
     interface RootParamList {
